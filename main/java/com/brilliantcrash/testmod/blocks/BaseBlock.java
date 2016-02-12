@@ -1,5 +1,6 @@
 package com.brilliantcrash.testmod.blocks;
 
+import com.brilliantcrash.testmod.ModCreativeTabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -13,7 +14,7 @@ public class BaseBlock extends Block{
     public BaseBlock(String unlocalizedName, Material material, float hardness, float resistance) {
         super(material);
         this.setUnlocalizedName(unlocalizedName);
-        //this.setCreativeTab(CreativeTabs.tabBlock);
+        this.setCreativeTab(ModCreativeTabs.testMod);
         this.setHardness(hardness);
         this.setResistance(resistance);
         this.setHarvestLevel("pickaxe", 2);

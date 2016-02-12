@@ -1,6 +1,7 @@
 package com.brilliantcrash.testmod;
 
 import com.brilliantcrash.testmod.client.render.blocks.BlockRenderRegister;
+import com.brilliantcrash.testmod.client.render.items.ItemRenderRegister;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -20,6 +21,7 @@ public class ClientProxy extends CommonProxy {
         super.init(e);
 
         BlockRenderRegister.registerBlockRenderer();
+        ItemRenderRegister.registerItemRenderer();
     }
 
     @Override
