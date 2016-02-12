@@ -20,17 +20,18 @@ public class BaseMod {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent e) {
-        this.proxy.preInit(e);
+        proxy.preInit(e);
     }
 
     @EventHandler
     public void init(FMLInitializationEvent e) {
-        this.proxy.init(e);
+        proxy.init(e);
     }
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent e) {
-        this.proxy.postInit(e);
+        proxy.postInit(e);
+
     }
 
     @SidedProxy(clientSide = "com.brilliantcrash.testmod.ClientProxy", serverSide = "com.brilliantcrash.testmod.ServerProxy")
