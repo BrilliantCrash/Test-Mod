@@ -8,7 +8,7 @@ import net.minecraft.creativetab.CreativeTabs;
 /**
  * Created by Noah on 2/9/2016.
  */
-public final class BaseBlock extends Block{
+public class BaseBlock extends Block{
     
     public BaseBlock(String unlocalizedName, Material material, float hardness, float resistance) {
         super(material);
