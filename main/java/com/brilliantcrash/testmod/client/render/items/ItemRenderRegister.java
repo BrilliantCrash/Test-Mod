@@ -16,11 +16,27 @@ public final class ItemRenderRegister {
 
     public static void registerItemRenderer() {
         reg(GunBase.gunGlock);
+        for (int i = 0; i <= 20; i++) {
+            reg(GunBase.gunGlock, i);
+        }
         reg(ModItems.ammo_ninemm);
     }
 
     public static void reg(Item item) {
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
-                .register(item, 0, new ModelResourceLocation(modid + ":" + item.getUnlocalizedName().substring(5), "inventory"));
+        reg(item, 0, item.getUnlocalizedName().substring(5));
     }
+
+    public static void reg(Item item, int meta) {
+        reg(item, meta, item.getUnlocalizedName().substring(5));
+    }
+
+    public static void reg(Item item, String modelName) {
+        reg(item, 0, item.getUnlocalizedName().substring(5));
+    }
+
+    public static void reg (Item item, int meta, String modelName) {
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
+                .register(item, meta, new ModelResourceLocation(modid + ":" + modelName, "inventory"));
+    }
+
 }
