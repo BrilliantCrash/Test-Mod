@@ -43,6 +43,7 @@ public class GunGlock extends Item {
 
         tc.setInteger("ammo", tc.getInteger("ammo") - 1);
         System.out.println(tc.getInteger("ammo"));
+        worldIn.playSoundAtEntity(player, "testmod:sound_gun9mmSingleShot", 1.0F, 1.0F);
         // Will fill in later
     }
 
