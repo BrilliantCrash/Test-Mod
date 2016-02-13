@@ -16,9 +16,6 @@ public final class ItemRenderRegister {
 
     public static void registerItemRenderer() {
         reg(GunBase.gunGlock);
-        for (int i = 0; i <= 20; i++) {
-            reg(GunBase.gunGlock, i);
-        }
         reg(ModItems.ammo_ninemm);
     }
 
