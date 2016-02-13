@@ -1,5 +1,6 @@
-package com.brilliantcrash.testmod.blocks;
+package com.brilliantcrash.testmod.items;
 
+import com.brilliantcrash.testmod.ModCreativeTabs;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
@@ -9,12 +10,14 @@ import net.minecraft.item.Item;
 public class BaseAmmo extends Item {
 
     public BaseAmmo (String unlocalizedName, CreativeTabs tab) {
+        super();
+
         this.setUnlocalizedName(unlocalizedName);
         this.setCreativeTab(tab);
     }
 
     public BaseAmmo (String unlocalizedName) {
-
+        this(unlocalizedName, ModCreativeTabs.testModAmmo);
     }
 
 }
