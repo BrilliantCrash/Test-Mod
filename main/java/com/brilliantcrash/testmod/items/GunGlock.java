@@ -1,5 +1,6 @@
 package com.brilliantcrash.testmod.items;
 
+import com.brilliantcrash.testmod.BaseMod;
 import com.brilliantcrash.testmod.ModCreativeTabs;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -76,4 +77,5 @@ public class GunGlock extends Item {
             stack.getTagCompound().setInteger("ammo", maxAmmo);
         }
     }
+
 }

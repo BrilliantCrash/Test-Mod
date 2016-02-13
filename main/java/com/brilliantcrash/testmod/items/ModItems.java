@@ -9,9 +9,11 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public final class ModItems {
 
     public static Item ammo_ninemm;
+    public static Item nylon;
 
     public static void createItems() {
         GameRegistry.registerItem(ammo_ninemm = new BaseAmmo("ammo_ninemm"), "ammo_ninemm");
+        GameRegistry.registerItem(nylon = new BaseItem("nylon"), "nylon");
     }
 
 }

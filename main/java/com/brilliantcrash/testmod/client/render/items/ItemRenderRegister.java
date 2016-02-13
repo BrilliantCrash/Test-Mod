@@ -18,6 +18,7 @@ public final class ItemRenderRegister {
     public static void registerItemRenderer() {
         reg(GunBase.gunGlock);
         reg(ModItems.ammo_ninemm);
+        reg(ModItems.nylon);
     }
 
     public static void reg(Item item) {

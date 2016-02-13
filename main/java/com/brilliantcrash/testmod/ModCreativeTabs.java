@@ -1,8 +1,10 @@
 package com.brilliantcrash.testmod;
 
 import com.brilliantcrash.testmod.blocks.ModBlocks;
+import com.brilliantcrash.testmod.items.BaseItem;
 import com.brilliantcrash.testmod.items.GunBase;
 import com.brilliantcrash.testmod.items.GunGlock;
+import com.brilliantcrash.testmod.items.ModItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.relauncher.Side;
@@ -28,6 +30,14 @@ public class ModCreativeTabs {
         public Item getTabIconItem()
         {
             return GunBase.gunGlock;
+        }
+    };
+
+    public static final CreativeTabs testModItems = new CreativeTabs("TestModItems") {
+        @Override
+        @SideOnly(Side.CLIENT)
+        public Item getTabIconItem() {
+            return ModItems.nylon;
         }
     };
 }
