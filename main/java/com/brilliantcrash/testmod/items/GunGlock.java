@@ -19,11 +19,8 @@ import java.util.List;
  */
 public class GunGlock extends Item {
 
-<<<<<<< HEAD
-=======
     public int meta;
     public int maxAmmo;
->>>>>>> c6ef11fb64eb628f2aaa492e764a12a17a8e9e35
 
     public GunGlock(String unlocalizedName, int maxAmmo) {
         super();
@@ -50,57 +47,6 @@ public class GunGlock extends Item {
     }
 
     @Override
-<<<<<<< HEAD
-    public String getUnlocalizedName(ItemStack stack) {
-        public String ammoCount;
-        switch (int ammo = default) {
-            case 1: ammoCount = "20";
-
-            case 2: ammoCount = "19";
-
-            case 3: ammoCount = "18";
-
-            case 4: ammoCount = "17";
-
-            case 5: ammoCount = "16";
-
-            case 6: ammoCount = "15";
-
-            case 7: ammoCount = "14";
-
-            case 8: ammoCount = "13";
-
-            case 9: ammoCount = "12";
-
-            case 10: ammoCount = "11";
-
-            case 11: ammoCount = "10";
-
-            case 12: ammoCount = "9";
-
-            case 13: ammoCount = "8";
-
-            case 14: ammoCount = "7";
-
-            case 15: ammoCount = "6";
-
-            case 16: ammoCount = "5";
-
-            case 17: ammoCount = "4";
-
-            case 18: ammoCount = "3";
-
-            case 19: ammoCount = "2";
-
-            case 20: ammoCount = "1";
-
-            case 21: ammoCount = "empty";
-
-            case default: ammoCount = "empty";
-        }
-
-        return super.getUnlocalizedName() + "." + ammoCount);
-=======
     public void onCreated(ItemStack itemStack, World world, EntityPlayer player) {
         createNBT(itemStack);
     }
@@ -110,7 +56,6 @@ public class GunGlock extends Item {
         createNBT(itemStackIn);
         fire(itemStackIn, worldIn, playerIn);
         return itemStackIn;
->>>>>>> c6ef11fb64eb628f2aaa492e764a12a17a8e9e35
     }
 
     @Override

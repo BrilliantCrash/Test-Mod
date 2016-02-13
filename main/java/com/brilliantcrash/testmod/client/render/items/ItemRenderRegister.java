@@ -34,13 +34,7 @@ public final class ItemRenderRegister {
 
     public static void reg (Item item, int meta, String modelName) {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
-<<<<<<< HEAD
-                .register(GunBase.gunGlock, 0, new ModelResourceLocation("modid:itemname", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
-                .register(GunBase.gunGlock, GunGlock.ammoCount, "meta_item");
-=======
                 .register(item, meta, new ModelResourceLocation(modid + ":" + modelName, "inventory"));
->>>>>>> c6ef11fb64eb628f2aaa492e764a12a17a8e9e35
     }
 
 }
