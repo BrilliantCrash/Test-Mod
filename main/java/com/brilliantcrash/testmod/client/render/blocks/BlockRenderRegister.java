@@ -17,6 +17,8 @@ public class BlockRenderRegister {
     public static void registerBlockRenderer() {
         reg(ModBlocks.testBlock);
         reg(ModBlocks.secondBlock);
+        reg(ModBlocks.oreCopper);
+        reg(ModBlocks.oreLead);
     }
 
     public static void reg(Block block) {

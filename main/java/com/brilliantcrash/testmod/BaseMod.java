@@ -1,5 +1,7 @@
 package com.brilliantcrash.testmod;
 
+import com.brilliantcrash.testmod.blocks.ModBlocks;
+import com.brilliantcrash.testmod.items.BaseAmmo;
 import com.brilliantcrash.testmod.items.GunBase;
 import com.brilliantcrash.testmod.items.ModItems;
 import net.minecraft.init.Blocks;
@@ -34,6 +36,7 @@ public class BaseMod {
         proxy.init(e);
 
         GameRegistry.addSmelting(Blocks.coal_block, new ItemStack(ModItems.nylon, 3), 1F);
+        GameRegistry.addSmelting(ModBlocks.oreCopper, new ItemStack(ModItems.ingotCopper, 1), 1F);
 
         GameRegistry.addRecipe(new ItemStack(GunBase.gunGlock),
                 "AAA",
@@ -41,6 +44,15 @@ public class BaseMod {
                 "  A",
                 'A', ModItems.nylon,
                 'B', Items.iron_ingot
+        );
+
+        GameRegistry.addRecipe(new ItemStack(ModItems.ammo_ninemm, 1),
+                " A ",
+                "BCB",
+                "BCB",
+                'A', ModItems.ingotCopper,
+                'B', Items.iron_ingot,
+                'C', ModItems.ingotLead
         );
     }
 
