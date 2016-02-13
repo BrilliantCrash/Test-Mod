@@ -11,7 +11,6 @@ import java.util.List;
  */
 public class GunGlock extends Item {
 
-    public int meta;
 
     public GunGlock(String unlocalizedName) {
         super();
@@ -23,10 +22,53 @@ public class GunGlock extends Item {
     @Override
     public String getUnlocalizedName(ItemStack stack) {
         public String ammoCount;
-        if stack.getItemDamage() == 0;
+        switch (int ammo = default) {
+            case 1: ammoCount = "20";
+
+            case 2: ammoCount = "19";
+
+            case 3: ammoCount = "18";
+
+            case 4: ammoCount = "17";
+
+            case 5: ammoCount = "16";
+
+            case 6: ammoCount = "15";
+
+            case 7: ammoCount = "14";
+
+            case 8: ammoCount = "13";
+
+            case 9: ammoCount = "12";
+
+            case 10: ammoCount = "11";
+
+            case 11: ammoCount = "10";
+
+            case 12: ammoCount = "9";
+
+            case 13: ammoCount = "8";
+
+            case 14: ammoCount = "7";
+
+            case 15: ammoCount = "6";
+
+            case 16: ammoCount = "5";
+
+            case 17: ammoCount = "4";
+
+            case 18: ammoCount = "3";
+
+            case 19: ammoCount = "2";
+
+            case 20: ammoCount = "1";
+
+            case 21: ammoCount = "empty";
+
+            case default: ammoCount = "empty";
+        }
+
         return super.getUnlocalizedName() + "." + ammoCount);
-        (stack.getItemDamage() == 0 ? "20" :
-                (stack.getItemDamage() == 1 ? "19" : (stack.getItemDamage() == 2 ? "18")));
     }
 
     @Override
