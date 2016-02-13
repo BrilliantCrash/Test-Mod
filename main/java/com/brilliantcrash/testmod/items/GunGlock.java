@@ -4,6 +4,8 @@ import com.brilliantcrash.testmod.ModCreativeTabs;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IntegerCache;
+
 import java.util.List;
 
 /**
@@ -22,11 +24,13 @@ public class GunGlock extends Item {
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        public String ammoCount;
-        if stack.getItemDamage() == 0;
-        return super.getUnlocalizedName() + "." + ammoCount);
-        (stack.getItemDamage() == 0 ? "20" :
-                (stack.getItemDamage() == 1 ? "19" : (stack.getItemDamage() == 2 ? "18")));
+        int ammoCount;
+        if (stack.getItemDamage() < 20) {
+            ammoCount = 20-stack.getItemDamage();
+            return super.getUnlocalizedName() + "." + Integer.toString(ammoCount);
+        } else {
+            return super.getUnlocalizedName() + ".0";
+        }
     }
 
     @Override
