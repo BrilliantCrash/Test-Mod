@@ -35,25 +35,7 @@ public class BaseMod {
     public void init(FMLInitializationEvent e) {
         proxy.init(e);
 
-        GameRegistry.addSmelting(Blocks.coal_block, new ItemStack(ModItems.nylon, 3), 1F);
-        GameRegistry.addSmelting(ModBlocks.oreCopper, new ItemStack(ModItems.ingotCopper, 1), 1F);
-
-        GameRegistry.addRecipe(new ItemStack(GunBase.gunGlock),
-                "AAA",
-                " BA",
-                "  A",
-                'A', ModItems.nylon,
-                'B', Items.iron_ingot
-        );
-
-        GameRegistry.addRecipe(new ItemStack(ModItems.ammo_ninemm, 1),
-                " A ",
-                "BCB",
-                "BCB",
-                'A', ModItems.ingotCopper,
-                'B', Items.iron_ingot,
-                'C', ModItems.ingotLead
-        );
+        RecipeHandler.createRecipes();
     }
 
 
