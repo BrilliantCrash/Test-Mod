@@ -168,7 +168,7 @@ public class EntityBullet extends Entity implements IProjectile {
             this.motionX *= (double)motionFactor;
             this.motionY *= (double)motionFactor;
             this.motionZ *= (double)motionFactor;
-            this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D, new int[0]);
+            this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D, new int[0]);
             this.setPosition(this.posX, this.posY, this.posZ);
         } else {
             this.setDead();

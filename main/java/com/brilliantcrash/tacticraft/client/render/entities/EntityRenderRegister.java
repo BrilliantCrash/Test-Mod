@@ -15,12 +15,14 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 public class EntityRenderRegister {
 
     public static void registerEntityRenderer () {
-        RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new IRenderFactory<EntityBullet>() {
-            @Override//hi
+        /*RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new IRenderFactory<EntityBullet>() {
+            @Override //hi
             public Render<? super EntityBullet> createRenderFor(RenderManager manager) {
                 return new RenderSnowball<EntityBullet>(manager, ModItems.bullet, Minecraft.getMinecraft().getRenderItem());
             }
-        });
+        });*/ // <-- this is supposed to work but it doesn't so ¯\_(ツ)_/¯
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new RenderSnowball<EntityBullet>(Minecraft.getMinecraft().getRenderManager(), ModItems.bullet, Minecraft.getMinecraft().getRenderItem()));
     }
 
 }
