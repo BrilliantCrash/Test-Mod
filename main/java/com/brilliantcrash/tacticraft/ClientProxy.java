@@ -1,6 +1,7 @@
 package com.brilliantcrash.tacticraft;
 
 import com.brilliantcrash.tacticraft.client.render.blocks.BlockRenderRegister;
+import com.brilliantcrash.tacticraft.client.render.entities.EntityRenderRegister;
 import com.brilliantcrash.tacticraft.client.render.items.ItemRenderRegister;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -22,6 +23,7 @@ public class ClientProxy extends CommonProxy {
 
         BlockRenderRegister.registerBlockRenderer();
         ItemRenderRegister.registerItemRenderer();
+        EntityRenderRegister.registerEntityRenderer();
     }
 
     @Override
