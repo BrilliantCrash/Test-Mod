@@ -8,8 +8,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -19,6 +23,7 @@ public class EntityBullet extends Entity implements IProjectile {
 
     public float damage;
     public EntityLivingBase shootingEntity;
+    public String shootingEntityName;
     public int ticksInAir;
 
     public EntityBullet (World worldIn) {
@@ -180,11 +185,57 @@ public class EntityBullet extends Entity implements IProjectile {
         {
             if (mop.entityHit != null)
             {
-                mop.entityHit.attackEntityFrom(new BulletDamageSource("bullet", this.shootingEntity, this.shootingEntity.getHeldItem()), 6.0F);
+                mop.entityHit.attackEntityFrom(new BulletDamageSource("bullet", this.shootingEntity, this.shootingEntity.getHeldItem()), damage);
             }
 
             this.setDead();
         }
+    }
+
+    // Taken from EntityThrowable
+    /**
+     * Checks if the entity is in range to render by using the past in distance and comparing it to its average edge
+     * length * 64 * renderDistanceWeight Args: distance
+     */
+    @SideOnly(Side.CLIENT)
+    public boolean isInRangeToRenderDist(double distance)
+    {
+        double d0 = this.getEntityBoundingBox().getAverageEdgeLength() * 4.0D;
+
+        if (Double.isNaN(d0))
+        {
+            d0 = 4.0D;
+        }
+
+        d0 = d0 * 64.0D;
+        return distance < d0 * d0;
+    }
+
+    public EntityLivingBase getThrower()
+    {
+        if (this.shootingEntity == null && this.shootingEntityName != null && this.shootingEntityName.length() > 0)
+        {
+            this.shootingEntity = this.worldObj.getPlayerEntityByName(this.shootingEntityName);
+
+            if (this.shootingEntity == null && this.worldObj instanceof WorldServer)
+            {
+                try
+                {
+                    Entity entity = ((WorldServer)this.worldObj).getEntityFromUuid(UUID.fromString(this.shootingEntityName));
+
+                    if (entity instanceof EntityLivingBase)
+                    {
+                        this.shootingEntity = (EntityLivingBase)entity;
+                    }
+                }
+                catch (Throwable var2)
+                {
+                    this.shootingEntity = null;
+                }
+            }
+        }
+
+        return this.shootingEntity;
     }
 
     @Override
@@ -195,10 +246,13 @@ public class EntityBullet extends Entity implements IProjectile {
     @Override
     protected void readEntityFromNBT(NBTTagCompound tagCompund) {
         damage = tagCompund.getFloat("damage");
+        shootingEntityName = tagCompund.getString("shootingEntityName");
+        shootingEntity = getThrower();
     }
 
     @Override
     protected void writeEntityToNBT(NBTTagCompound tagCompound) {
         tagCompound.setFloat ("damage", damage);
+        tagCompound.setString ("shootingEntityName", shootingEntity.getDisplayName().toString());
     }
 }
