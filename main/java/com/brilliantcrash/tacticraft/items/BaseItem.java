@@ -16,6 +16,6 @@ public class BaseItem extends Item {
     }
 
     public BaseItem (String unlocalizedName) {
-        this(unlocalizedName, ModCreativeTabs.testModItems);
+        this(unlocalizedName, ModCreativeTabs.tacticraftItems);
     }
 }

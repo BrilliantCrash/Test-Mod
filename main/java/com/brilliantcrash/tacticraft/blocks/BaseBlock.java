@@ -12,7 +12,7 @@ public class BaseBlock extends Block{
     public BaseBlock(String unlocalizedName, Material material, float hardness, float resistance) {
         super(material);
         this.setUnlocalizedName(unlocalizedName);
-        this.setCreativeTab(ModCreativeTabs.testMod);
+        this.setCreativeTab(ModCreativeTabs.tacticraft);
         this.setHardness(hardness);
         this.setResistance(resistance);
         this.setHarvestLevel("pickaxe", 2);

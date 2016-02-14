@@ -19,7 +19,7 @@ public class GunGlock extends Item {
     public GunGlock(String unlocalizedName, int maxAmmo) {
         super();
         this.setUnlocalizedName(unlocalizedName);
-        this.setCreativeTab(ModCreativeTabs.testMod);
+        this.setCreativeTab(ModCreativeTabs.tacticraft);
         this.maxAmmo = maxAmmo;
     }
 

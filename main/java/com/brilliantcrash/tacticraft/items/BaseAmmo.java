@@ -17,7 +17,7 @@ public class BaseAmmo extends Item {
     }
 
     public BaseAmmo (String unlocalizedName) {
-        this(unlocalizedName, ModCreativeTabs.testModAmmo);
+        this(unlocalizedName, ModCreativeTabs.tacticraftAmmo);
     }
 
 }
