@@ -19,7 +19,7 @@ public final class ModItems {
         GameRegistry.registerItem(nylon = new BaseItem("nylon"), "nylon");
         GameRegistry.registerItem(ingotCopper = new BaseItem("copper_ingot"), "copper_ingot");
         GameRegistry.registerItem(ingotLead = new BaseItem("lead_ingot"), "lead_ingot");
-        GameRegistry.registerItem(bullet = new BaseItem("bullet"), "bullet");
+        GameRegistry.registerItem(bullet = new BaseAmmo("bullet"), "bullet");
     }
 
 }

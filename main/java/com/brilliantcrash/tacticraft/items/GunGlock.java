@@ -1,7 +1,7 @@
 package com.brilliantcrash.tacticraft.items;
 
 import com.brilliantcrash.tacticraft.ModCreativeTabs;
-import com.brilliantcrash.tacticraft.items.projectiles.EntityBullet;
+import com.brilliantcrash.tacticraft.entities.EntityBullet;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

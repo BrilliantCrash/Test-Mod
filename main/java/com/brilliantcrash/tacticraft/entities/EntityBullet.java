@@ -1,4 +1,4 @@
-package com.brilliantcrash.tacticraft.items.projectiles;
+package com.brilliantcrash.tacticraft.entities;
 
 import com.brilliantcrash.tacticraft.BulletDamageSource;
 import net.minecraft.entity.Entity;
@@ -21,6 +21,10 @@ public class EntityBullet extends Entity implements IProjectile {
     public EntityLivingBase shootingEntity;
     public int ticksInAir;
 
+    public EntityBullet (World worldIn) {
+        super(worldIn);
+    }
+
     public EntityBullet (World worldIn, EntityLivingBase shooter, float velocity, float damage, float innacuracy) {
         // Modified from EntityArrow
 
@@ -38,6 +42,7 @@ public class EntityBullet extends Entity implements IProjectile {
         this.motionZ = (double)(MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI));
         this.motionY = (double)(-MathHelper.sin(this.rotationPitch / 180.0F * (float)Math.PI));
         this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, velocity * 1.5F, innacuracy);
+        this.setSize(1.0F, 1.0F);
     }
 
     @Override
@@ -184,7 +189,7 @@ public class EntityBullet extends Entity implements IProjectile {
 
     @Override
     protected void entityInit() {
-
+        this.dataWatcher.addObject(16, (byte) 0);
     }
 
     @Override
