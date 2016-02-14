@@ -16,7 +16,7 @@ public class EntityRenderRegister {
 
     public static void registerEntityRenderer () {
         RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new IRenderFactory<EntityBullet>() {
-            @Override
+            @Override//hi
             public Render<? super EntityBullet> createRenderFor(RenderManager manager) {
                 return new RenderSnowball<EntityBullet>(manager, ModItems.bullet, Minecraft.getMinecraft().getRenderItem());
             }
