@@ -1,6 +1,7 @@
 package com.brilliantcrash.tacticraft.items;
 
 import com.brilliantcrash.tacticraft.ModCreativeTabs;
+import com.brilliantcrash.tacticraft.entities.EntityBullet;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -37,7 +38,11 @@ public class GunGlock extends Item {
         tc.setInteger("ammo", tc.getInteger("ammo") - 1);
         System.out.println(tc.getInteger("ammo"));
         worldIn.playSoundAtEntity(player, "tacticraft:sound_gun9mmSingleShot", 1.0F, 1.0F);
-        // Will fill in later
+
+        EntityBullet bullet = new EntityBullet(worldIn, player, 2.0F, 5.0F, 0);
+        if (!worldIn.isRemote) {
+            worldIn.spawnEntityInWorld(bullet);
+        }
     }
 
     @Override

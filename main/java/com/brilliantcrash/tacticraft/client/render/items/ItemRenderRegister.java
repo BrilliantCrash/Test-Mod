@@ -20,6 +20,7 @@ public final class ItemRenderRegister {
         reg(ModItems.nylon);
         reg(ModItems.ingotCopper);
         reg(ModItems.ingotLead);
+        reg(ModItems.bullet);
     }
 
     public static void reg(Item item) {

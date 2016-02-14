@@ -33,7 +33,6 @@ public class BaseMod {
     @EventHandler
     public void init(FMLInitializationEvent e) {
         proxy.init(e);
-
         RecipeHandler.createRecipes();
     }
 
