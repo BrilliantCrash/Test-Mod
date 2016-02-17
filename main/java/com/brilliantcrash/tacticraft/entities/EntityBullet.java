@@ -152,7 +152,7 @@ public class EntityBullet extends Entity implements IProjectile {
 
             for (this.rotationPitch = (float)(MathHelper.atan2((double)f1, this.motionY) * 180.0D / Math.PI) - 90.0F; this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
             {
-                ; // TODO figure out what this does
+                ;
             }
 
 			// This prevRotationPitch stuff is here from another class. We might not even need it. 
@@ -172,8 +172,9 @@ public class EntityBullet extends Entity implements IProjectile {
                 this.prevRotationYaw += 360.0F;
             }
 
-            this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
-            this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
+            //this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
+            //this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
+
 			// REALLY IMPORTANT - this is the thing that slows down the bullet, like air drag. The bullet's speed gets multiplied
 			// by this every tick. We want the bullet to go far, so we keep it very close to 1.0F. 
             float motionFactor = 0.995F;
