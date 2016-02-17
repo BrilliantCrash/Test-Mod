@@ -46,6 +46,7 @@ public class EntityBullet extends Entity implements IProjectile {
         this.damage = damage;
         this.renderDistanceWeight = 10.0D;
         this.shootingEntity = shooter;
+        this.shootingEntityName = shooter.getDisplayName().toString();
 
         this.setLocationAndAngles(shooter.posX, shooter.posY + (double)shooter.getEyeHeight(), shooter.posZ, shooter.rotationYaw, shooter.rotationPitch);
         this.posX -= (double)(MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * 0.16F);
@@ -283,6 +284,7 @@ public class EntityBullet extends Entity implements IProjectile {
     @Override
     protected void writeEntityToNBT(NBTTagCompound tagCompound) {
         tagCompound.setFloat ("damage", damage);
-        tagCompound.setString ("shootingEntityName", shootingEntity.getDisplayName().toString());
+        if (shootingEntity != null)
+            tagCompound.setString ("shootingEntityName", shootingEntity.getDisplayName().toString());
     }
 }
