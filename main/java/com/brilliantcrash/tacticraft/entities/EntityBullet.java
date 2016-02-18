@@ -61,6 +61,22 @@ public class EntityBullet extends Entity implements IProjectile {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
+    public void setVelocity(double x, double y, double z)
+    {
+        this.motionX = x;
+        this.motionY = y;
+        this.motionZ = z;
+
+        if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F)
+        {
+            float f = MathHelper.sqrt_double(x * x + z * z);
+            this.prevRotationYaw = this.rotationYaw = (float)(MathHelper.atan2(x, z) * 180.0D / Math.PI);
+            this.prevRotationPitch = this.rotationPitch = (float)(MathHelper.atan2(y, (double)f) * 180.0D / Math.PI);
+        }
+    }
+
+    @Override
     public void setThrowableHeading(double x, double y, double z, float velocity, float inaccuracy) {
         // From EntityArrow
         float f = MathHelper.sqrt_double(x * x + y * y + z * z);
@@ -155,8 +171,7 @@ public class EntityBullet extends Entity implements IProjectile {
                 ;
             }
 
-			// This prevRotationPitch stuff is here from another class. We might not even need it. 
-			// TODO Determine if this is necessary
+			// This prevRotationPitch stuff is here from another class.
             while (this.rotationPitch - this.prevRotationPitch >= 180.0F)
             {
                 this.prevRotationPitch += 360.0F;
@@ -172,8 +187,8 @@ public class EntityBullet extends Entity implements IProjectile {
                 this.prevRotationYaw += 360.0F;
             }
 
-            //this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
-            //this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
+            this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
+            this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
 
 			// REALLY IMPORTANT - this is the thing that slows down the bullet, like air drag. The bullet's speed gets multiplied
 			// by this every tick. We want the bullet to go far, so we keep it very close to 1.0F. 
@@ -211,8 +226,11 @@ public class EntityBullet extends Entity implements IProjectile {
         {
             if (mop.entityHit != null)
             {
-				// The first argument in the BulletDamageSource MUST be "bullet," or the death messages won't work.
-                mop.entityHit.attackEntityFrom(new BulletDamageSource("bullet", this.shootingEntity, this.shootingEntity.getHeldItem()), damage);
+				// The first argument in the BulletDamageSource MUST be "bullet," or the death messages won't work
+                if (this.shootingEntity != null)
+                    mop.entityHit.attackEntityFrom(new BulletDamageSource("bullet", this.shootingEntity, this.shootingEntity.getHeldItem()), damage);
+                else
+                    mop.entityHit.attackEntityFrom(new BulletDamageSource("bullet", null, null), damage);
             }
 
             this.setDead();

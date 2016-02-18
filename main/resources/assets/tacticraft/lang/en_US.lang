@@ -1,5 +1,6 @@
 < en_US.assets.tacticraft.lang - English localization for TestMod >
-death.attack.bullet=%1$s was shot to death by %2$s.
+death.attack.bullet=%1$s was shot to death.
+death.attack.bullet.player=%1$s was shot to death by %2$s.
 death.attack.bullet.item=%1$s was shot to death by %2$s with a %3$s.
 item.ammo_ninemm.name=9mm Ammunition
 item.copper_ingot.name=Copper Ingot

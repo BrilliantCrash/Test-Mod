@@ -24,12 +24,19 @@ public class BulletDamageSource extends DamageSource {
 
     @Override
     public IChatComponent getDeathMessage (EntityLivingBase deadPlayer) {
-        ItemStack itemstack = this.player instanceof EntityLivingBase ? (this.player).getHeldItem() : null;
+        ItemStack itemstack = null;
+        if (this.player != null) {
+            itemstack = this.player instanceof EntityLivingBase ? (this.player).getHeldItem() : null;
+        }
         String s = "death.attack." + this.damageType;
         String s1 = s + ".item";
-        return itemstack != null && itemstack.hasDisplayName() ?
-                new ChatComponentTranslation(s1, new Object[] {deadPlayer.getDisplayName(), this.player.getDisplayName(), itemstack.getChatComponent()})
-                : new ChatComponentTranslation(s, new Object[] {deadPlayer.getDisplayName(), this.player.getDisplayName()});
+        if (itemstack != null && itemstack.hasDisplayName() && this.player != null)
+            return new ChatComponentTranslation(s1, new Object[] {deadPlayer.getDisplayName(), this.player.getDisplayName(), itemstack.getChatComponent()});
+        else if (this.player != null) {
+            return new ChatComponentTranslation(s + ".player", new Object[] {deadPlayer.getDisplayName(), this.player.getDisplayName()});
+        } else {
+            return new ChatComponentTranslation(s, new Object[] {deadPlayer.getDisplayName()});
+        }
 
     }
 
