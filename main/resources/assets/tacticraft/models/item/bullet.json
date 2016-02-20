@@ -1,7 +1,7 @@
 {
   "parent":"builtin/generated",
   "textures": {
-    "layer0":"tacticraft:items/bullet"
+    "layer0":"tacticraft:items/transparent"
   },
   "display": {
     "thirdperson": {

@@ -212,7 +212,7 @@ public class EntityBullet extends Entity implements IProjectile {
             this.motionZ *= (double)motionFactor;
 			// Make the accelerate the bullet downward according to the gravityFactor, set above. 
             this.motionY -= gravityFactor;
-            this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D, new int[0]);
+            //this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D, new int[0]);
 			// Actually move the bullet.
             this.setPosition(this.posX, this.posY, this.posZ);
         } else {

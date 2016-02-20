@@ -15,14 +15,15 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 public class EntityRenderRegister {
 
     public static void registerEntityRenderer () {
-        /*RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new IRenderFactory<EntityBullet>() {
-            @Override //hi
-            public Render<? super EntityBullet> createRenderFor(RenderManager manager) {
-                return new RenderSnowball<EntityBullet>(manager, ModItems.bullet, Minecraft.getMinecraft().getRenderItem());
-            }
-        });*/ // <-- this is supposed to work but it doesn't so ¯\_(ツ)_/¯
+        /* This is where we will register any entities and projectiles, just like the statment  below.
+        We decided not to render the bullet because it was causing too much trouble, and you shouldn't really
+        be able to see it in the first place.*/
 
-        RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new RenderSnowball<EntityBullet>(Minecraft.getMinecraft().getRenderManager(), ModItems.bullet, Minecraft.getMinecraft().getRenderItem()));
+        // Changing the texture to be nothing so it won't render.
+        RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new RenderSnowball<EntityBullet>(
+            Minecraft.getMinecraft().getRenderManager(),
+            ModItems.bullet,
+            Minecraft.getMinecraft().getRenderItem()));
     }
 
 }
