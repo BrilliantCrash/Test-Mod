@@ -34,6 +34,23 @@ public class RecipeHandler {
                 'B', Items.iron_ingot,
                 'C', ModItems.ingotLead
         );
+
+        GameRegistry.addRecipe(new ItemStack(ModItems.knife, 1),
+                " A ",
+                " B ",
+                "   ",
+                'A', Items.iron_ingot,
+                'B', Items.stick
+        );
+
+        GameRegistry.addRecipe(new ItemStack(ModItems.knife, 1),
+                "   ",
+                " A ",
+                " B ",
+                'A', Items.iron_ingot,
+                'B', Items.stick
+        );
+
     }
 
 }

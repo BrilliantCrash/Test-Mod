@@ -1,6 +1,8 @@
 package com.brilliantcrash.tacticraft.items;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemSword;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
@@ -13,6 +15,8 @@ public final class ModItems {
     public static Item ingotCopper;
     public static Item ingotLead;
     public static Item bullet;
+    public static Item knife;
+    public static Item.ToolMaterial MODIRON = EnumHelper.addToolMaterial("MODIRON", 2, 50, 6.0F, 2.5F, 15);
 
     public static void createItems() {
         GameRegistry.registerItem(ammo_ninemm = new BaseAmmo("ammo_ninemm"), "ammo_ninemm");
@@ -20,6 +24,7 @@ public final class ModItems {
         GameRegistry.registerItem(ingotCopper = new BaseItem("copper_ingot"), "copper_ingot");
         GameRegistry.registerItem(ingotLead = new BaseItem("lead_ingot"), "lead_ingot");
         GameRegistry.registerItem(bullet = new BaseAmmo("bullet"), "bullet");
+        GameRegistry.registerItem(knife = new BaseSword("knife", MODIRON), "knife");
     }
 
 }

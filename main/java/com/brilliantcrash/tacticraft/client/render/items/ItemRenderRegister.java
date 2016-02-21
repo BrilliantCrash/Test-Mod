@@ -21,6 +21,7 @@ public final class ItemRenderRegister {
         reg(ModItems.ingotCopper);
         reg(ModItems.ingotLead);
         reg(ModItems.bullet);
+        reg(ModItems.knife);
     }
 
     public static void reg(Item item) {

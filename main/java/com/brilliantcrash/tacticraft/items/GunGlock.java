@@ -39,7 +39,7 @@ public class GunGlock extends Item {
         System.out.println(tc.getInteger("ammo"));
         worldIn.playSoundAtEntity(player, "tacticraft:sound_gun9mmSingleShot", 1.0F, 1.0F);
 
-        EntityBullet bullet = new EntityBullet(worldIn, player, 15.0F, 6.0F, 0);
+        EntityBullet bullet = new EntityBullet(worldIn, player, 15.0F, 15.0F, 0);
         if (!worldIn.isRemote) {
             worldIn.spawnEntityInWorld(bullet);
         }
