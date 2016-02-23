@@ -9,10 +9,14 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class GunBase {
 
     public static Item gunGlock;
+    //public static Item gunP250;
 
     public static void createItems() {
         GameRegistry.registerItem(gunGlock = new GunGlock("gun_glock", 20), "gun_glock");
+        //GameRegistry.registerItem(gunP250 = new GunGlock("gun_p250", 17), "gun_p250");
 
     }
+
+
 
 }

@@ -18,7 +18,7 @@ public class ModCreativeTabs {
         @SideOnly(Side.CLIENT)
         public Item getTabIconItem()
         {
-            return GunBase.gunGlock;
+            return ModItems.ingotCopper;
         }
     };
 
@@ -37,5 +37,10 @@ public class ModCreativeTabs {
         public Item getTabIconItem() {
             return ModItems.nylon;
         }
+    };
+    public static final CreativeTabs tacticraftPistols = new CreativeTabs("tacticraftPistols") {
+        @Override
+        @SideOnly(Side.CLIENT)
+        public Item getTabIconItem() { return GunBase.gunGlock; }
     };
 }
