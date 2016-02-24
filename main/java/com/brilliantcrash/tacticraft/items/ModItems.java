@@ -1,7 +1,7 @@
 package com.brilliantcrash.tacticraft.items;
 
+import com.brilliantcrash.tacticraft.items.melee.BaseSword;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemSword;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 

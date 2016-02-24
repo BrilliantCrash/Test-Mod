@@ -6,7 +6,7 @@ package com.brilliantcrash.tacticraft;
 import com.brilliantcrash.tacticraft.blocks.ModBlocks;
 import com.brilliantcrash.tacticraft.blocks.ModOreGen;
 import com.brilliantcrash.tacticraft.entities.ModEntities;
-import com.brilliantcrash.tacticraft.items.GunBase;
+import com.brilliantcrash.tacticraft.items.ModGuns;
 import com.brilliantcrash.tacticraft.items.ModItems;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -17,7 +17,7 @@ public class CommonProxy {
 
     public void preInit(FMLPreInitializationEvent e) {
         ModBlocks.createBlocks();
-        GunBase.createItems();
+        ModGuns.createItems();
         ModItems.createItems();
         ModEntities.createEntities();
     }

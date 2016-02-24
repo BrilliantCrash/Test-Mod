@@ -1,7 +1,7 @@
 package com.brilliantcrash.tacticraft;
 
 import com.brilliantcrash.tacticraft.blocks.ModBlocks;
-import com.brilliantcrash.tacticraft.items.GunBase;
+import com.brilliantcrash.tacticraft.items.ModGuns;
 import com.brilliantcrash.tacticraft.items.ModItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -18,7 +18,7 @@ public class RecipeHandler {
         GameRegistry.addSmelting(ModBlocks.oreCopper, new ItemStack(ModItems.ingotCopper, 1), 1F);
         GameRegistry.addSmelting(ModBlocks.oreLead, new ItemStack(ModItems.ingotLead, 1), 1F);
 
-        GameRegistry.addRecipe(new ItemStack(GunBase.gunGlock),
+        GameRegistry.addRecipe(new ItemStack(ModGuns.gunGlock),
                 "AAA",
                 " BA",
                 "  A",

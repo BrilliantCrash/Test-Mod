@@ -1,4 +1,4 @@
-package com.brilliantcrash.tacticraft.items;
+package com.brilliantcrash.tacticraft.items.guns;
 
 import com.brilliantcrash.tacticraft.ModCreativeTabs;
 import com.brilliantcrash.tacticraft.entities.EntityBullet;
@@ -10,13 +10,14 @@ import net.minecraft.world.World;
 
 /**
  * Created by Noah on 2/12/2016.
+ * All guns should extend this class.
  */
-public class GunGlock extends Item {
+public abstract class BaseGun extends Item {
 
     public int meta;
     public int maxAmmo;
 
-    public GunGlock(String unlocalizedName, int maxAmmo) {
+    public BaseGun(String unlocalizedName, int maxAmmo) {
         super();
         this.setUnlocalizedName(unlocalizedName);
         this.setCreativeTab(ModCreativeTabs.tacticraft);
@@ -39,10 +40,19 @@ public class GunGlock extends Item {
         System.out.println(tc.getInteger("ammo"));
         worldIn.playSoundAtEntity(player, "tacticraft:sound_gun9mmSingleShot", 1.0F, 1.0F);
 
-        EntityBullet bullet = new EntityBullet(worldIn, player, 15.0F, 15.0F, 0);
+        EntityBullet bullet = getBullet(worldIn, player, stack);
         if (!worldIn.isRemote) {
             worldIn.spawnEntityInWorld(bullet);
         }
+    }
+
+    public abstract EntityBullet getBullet(World worldIn, EntityPlayer player, ItemStack stack);
+
+    /**
+     * Reloads the gun if there is a clip in the player's inventory.
+     */
+    public void reload() {
+        // TODO make this
     }
 
     @Override

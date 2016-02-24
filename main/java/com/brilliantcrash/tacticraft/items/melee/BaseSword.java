@@ -1,4 +1,4 @@
-package com.brilliantcrash.tacticraft.items;
+package com.brilliantcrash.tacticraft.items.melee;
 
 import com.brilliantcrash.tacticraft.ModCreativeTabs;
 import net.minecraft.creativetab.CreativeTabs;

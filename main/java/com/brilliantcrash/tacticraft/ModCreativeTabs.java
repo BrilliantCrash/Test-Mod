@@ -1,7 +1,6 @@
 package com.brilliantcrash.tacticraft;
 
-import com.brilliantcrash.tacticraft.blocks.ModBlocks;
-import com.brilliantcrash.tacticraft.items.GunBase;
+import com.brilliantcrash.tacticraft.items.ModGuns;
 import com.brilliantcrash.tacticraft.items.ModItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -18,7 +17,7 @@ public class ModCreativeTabs {
         @SideOnly(Side.CLIENT)
         public Item getTabIconItem()
         {
-            return ModItems.ingotCopper;
+            return ModGuns.gunGlock;
         }
     };
 
@@ -37,10 +36,5 @@ public class ModCreativeTabs {
         public Item getTabIconItem() {
             return ModItems.nylon;
         }
-    };
-    public static final CreativeTabs tacticraftPistols = new CreativeTabs("tacticraftPistols") {
-        @Override
-        @SideOnly(Side.CLIENT)
-        public Item getTabIconItem() { return GunBase.gunGlock; }
     };
 }

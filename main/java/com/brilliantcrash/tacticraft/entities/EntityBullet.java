@@ -1,6 +1,7 @@
 package com.brilliantcrash.tacticraft.entities;
 
 import com.brilliantcrash.tacticraft.BulletDamageSource;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
@@ -168,7 +169,6 @@ public class EntityBullet extends Entity implements IProjectile {
 
             for (this.rotationPitch = (float)(MathHelper.atan2((double)f1, this.motionY) * 180.0D / Math.PI) - 90.0F; this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
             {
-                ;
             }
 
 			// This prevRotationPitch stuff is here from another class.
@@ -199,7 +199,7 @@ public class EntityBullet extends Entity implements IProjectile {
                 for (int j = 0; j < 4; ++j)
                 {
                     float f3 = 0.25F;
-                    this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * (double)f3, this.posY - this.motionY * (double)f3, this.posZ - this.motionZ * (double)f3, this.motionX, this.motionY, this.motionZ, new int[0]);
+                    this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * (double)f3, this.posY - this.motionY * (double)f3, this.posZ - this.motionZ * (double)f3, this.motionX, this.motionY, this.motionZ);
                 }
 
 				// Make the bullet a lot slower if it's in water. 
@@ -222,6 +222,12 @@ public class EntityBullet extends Entity implements IProjectile {
     }
 
     protected void onImpact(MovingObjectPosition mop) {
+
+        if (mop.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
+            this.worldObj.spawnParticle(EnumParticleTypes.BLOCK_DUST, mop.getBlockPos().getX(), mop.getBlockPos().getY(), mop.getBlockPos().getZ(), 0.0D, 0.0D, 0.0D, Block.getStateId(worldObj.getBlockState(mop.getBlockPos())));
+        else
+            this.worldObj.spawnParticle(EnumParticleTypes.CRIT, mop.entityHit.posX, mop.entityHit.posY, mop.entityHit.posZ, 0.0D, 0.0D, 0.0D);
+
         if (!this.worldObj.isRemote)
         {
             if (mop.entityHit != null)
