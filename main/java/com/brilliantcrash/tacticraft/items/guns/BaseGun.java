@@ -16,12 +16,14 @@ public abstract class BaseGun extends Item {
 
     public int meta;
     public int maxAmmo;
+    public Item ammoType;
 
-    public BaseGun(String unlocalizedName, int maxAmmo) {
+    public BaseGun(String unlocalizedName, int maxAmmo, Item ammoType) {
         super();
         this.setUnlocalizedName(unlocalizedName);
         this.setCreativeTab(ModCreativeTabs.tacticraft);
         this.maxAmmo = maxAmmo;
+        this.ammoType = ammoType;
     }
 
     /**

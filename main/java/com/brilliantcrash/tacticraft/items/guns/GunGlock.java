@@ -2,6 +2,7 @@ package com.brilliantcrash.tacticraft.items.guns;
 
 import com.brilliantcrash.tacticraft.entities.EntityBullet;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -10,8 +11,8 @@ import net.minecraft.world.World;
  */
 public class GunGlock extends BaseGun {
 
-    public GunGlock (String unlocalizedName, int maxAmmo) {
-        super(unlocalizedName, maxAmmo);
+    public GunGlock (String unlocalizedName, int maxAmmo, Item ammoType) {
+        super(unlocalizedName, maxAmmo, ammoType);
     }
 
     @Override
