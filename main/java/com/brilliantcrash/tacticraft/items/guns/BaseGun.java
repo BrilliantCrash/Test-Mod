@@ -2,8 +2,10 @@ package com.brilliantcrash.tacticraft.items.guns;
 
 import com.brilliantcrash.tacticraft.ModCreativeTabs;
 import com.brilliantcrash.tacticraft.entities.EntityBullet;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -29,12 +31,17 @@ public abstract class BaseGun extends Item {
         this.reloadTime = reloadTime;
     }
 
+    @Override
+    public EnumAction getItemUseAction(ItemStack stack) {
+        return EnumAction.NONE;
+    }
+
     /**
      * What to do when firing the gun.
      * @param stack
      */
     public void fire(ItemStack stack, World worldIn, EntityPlayer player) {
-        if (stack.getTagCompound().getInteger("reloadTime") == 0) {
+        if (worldIn.getTotalWorldTime() - stack.getTagCompound().getLong("lastReload") > reloadTime) {
             NBTTagCompound tc = stack.getTagCompound();
 
             if (tc.getInteger("ammo") == 0) {
@@ -58,30 +65,19 @@ public abstract class BaseGun extends Item {
     /**
      * Reloads the gun if there is a clip in the player's inventory.
      */
-    public static void reload(EntityPlayer entPlayer, int ammoType2, ItemStack gun) {
+    public static void reload(EntityPlayer entPlayer, int ammoType2, ItemStack gun, World worldIn) {
         NBTTagCompound gunTc = gun.getTagCompound();
 
         if (entPlayer.inventory.hasItem(Item.getItemById(ammoType2))) {
             entPlayer.inventory.consumeInventoryItem(Item.getItemById(ammoType2));
             gunTc.setInteger("ammo", ((BaseGun) gun.getItem()).maxAmmo);
-            gunTc.setInteger("reloadTime", ((BaseGun) gun.getItem()).reloadTime);
+            gunTc.setLong("lastReload", worldIn.getTotalWorldTime());
         }
     }
 
     @Override
     public void onCreated(ItemStack itemStack, World world, EntityPlayer player) {
         createNBT(itemStack);
-    }
-
-    @Override
-    public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        super.onUpdate(stack, worldIn, entityIn, itemSlot, isSelected);
-        int currentReloadTime = stack.getTagCompound().getInteger("reloadTime");
-        if (currentReloadTime <= 1)
-            currentReloadTime = 0;
-        else
-            currentReloadTime--;
-        stack.getTagCompound().setInteger("reloadTime", currentReloadTime);
     }
 
     public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
@@ -107,7 +103,6 @@ public abstract class BaseGun extends Item {
         if (!stack.hasTagCompound()) {
             stack.setTagCompound(new NBTTagCompound());
             stack.getTagCompound().setInteger("ammo", maxAmmo);
-            stack.getTagCompound().setInteger("reloadTime", reloadTime);
         }
     }
 

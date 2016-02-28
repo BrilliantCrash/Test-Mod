@@ -66,7 +66,7 @@ public class ReloadMessage implements IMessage {
                     ammoType = message.ammoType;
                     gun = entPlayer.getHeldItem();
 
-                    BaseGun.reload(entPlayer, ammoType, gun);
+                    BaseGun.reload(entPlayer, ammoType, gun, ctx.getServerHandler().playerEntity.worldObj);
                 }
             });
             return null;
