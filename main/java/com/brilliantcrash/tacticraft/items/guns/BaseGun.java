@@ -17,10 +17,16 @@ import net.minecraft.world.World;
  */
 public abstract class BaseGun extends Item {
 
-    public int meta;
     public int maxAmmo;
     public Item ammoType;
+    /**
+     * Delay after reload in which a shot cannot be fired in ticks.
+     */
     public int reloadTime;
+    /**
+     * Delay between shots in ticks (20 ticks = 1 sec)
+     */
+    public int fireRate;
 
     public BaseGun(String unlocalizedName, int maxAmmo, Item ammoType, int reloadTime) {
         super();
@@ -38,7 +44,7 @@ public abstract class BaseGun extends Item {
 
     /**
      * What to do when firing the gun.
-     * @param stack
+     * @param stack The gun itself.
      */
     public void fire(ItemStack stack, World worldIn, EntityPlayer player) {
         if (worldIn.getTotalWorldTime() - stack.getTagCompound().getLong("lastReload") > reloadTime) {
@@ -60,6 +66,12 @@ public abstract class BaseGun extends Item {
         }
     }
 
+    /**
+     * @param worldIn The world.
+     * @param player The player that fired the gun.
+     * @param stack The actual bullet itself.
+     * @return What bullet this gun uses.
+     */
     public abstract EntityBullet getBullet(World worldIn, EntityPlayer player, ItemStack stack);
 
     /**
@@ -76,6 +88,9 @@ public abstract class BaseGun extends Item {
         }
     }
 
+    /**
+     * @return What sound the gun makes.
+     */
     public abstract String getSound();
 
     @Override
@@ -100,7 +115,7 @@ public abstract class BaseGun extends Item {
 
     /**
      * Method to quickly create an NBTTagCompound if it doesn't already exist.
-     * @param stack
+     * @param stack Item to make a NBTTagCompound for.
      */
     public void createNBT (ItemStack stack) {
         if (!stack.hasTagCompound()) {
