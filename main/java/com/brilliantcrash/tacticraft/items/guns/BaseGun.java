@@ -72,8 +72,11 @@ public abstract class BaseGun extends Item {
             entPlayer.inventory.consumeInventoryItem(Item.getItemById(ammoType2));
             gunTc.setInteger("ammo", ((BaseGun) gun.getItem()).maxAmmo);
             gunTc.setLong("lastReload", worldIn.getTotalWorldTime());
+            worldIn.playSoundAtEntity(entPlayer, ((BaseGun) gun.getItem()).getSound(), 1.0F, 1.0F);
         }
     }
+
+    public abstract String getSound();
 
     @Override
     public void onCreated(ItemStack itemStack, World world, EntityPlayer player) {

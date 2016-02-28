@@ -19,4 +19,9 @@ public class GunGlock extends BaseGun {
     public EntityBullet getBullet(World worldIn, EntityPlayer player, ItemStack stack) {
         return new EntityBullet(worldIn, player, 15.0F, 15.0F, 0);
     }
+
+    @Override
+    public String getSound() {
+        return "tacticraft:sound_glockReload";
+    }
 }
