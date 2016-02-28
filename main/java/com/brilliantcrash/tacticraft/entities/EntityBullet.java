@@ -2,6 +2,8 @@ package com.brilliantcrash.tacticraft.entities;
 
 import com.brilliantcrash.tacticraft.BulletDamageSource;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDoublePlant;
+import net.minecraft.block.BlockTallGrass;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
@@ -115,8 +117,12 @@ public class EntityBullet extends Entity implements IProjectile {
 
             if (movingobjectposition != null)
             {
-				// If the projectile will hit a block, set the next position to wherever the imapct is. 
-                nextPos = new Vec3(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
+                Block collidedBlock = worldObj.getBlockState(movingobjectposition.getBlockPos()).getBlock();
+                // Check to see if the block that the projectile hit isn't passable.
+                if (!(collidedBlock instanceof BlockDoublePlant || collidedBlock instanceof BlockTallGrass)) {
+                    // If the projectile will hit a block, set the next position to wherever the imapct is.
+                    nextPos = new Vec3(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
+                }
             }
 
             //Code to determine which entity it hits (if it does at all)
