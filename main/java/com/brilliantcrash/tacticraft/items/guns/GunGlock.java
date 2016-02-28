@@ -11,8 +11,8 @@ import net.minecraft.world.World;
  */
 public class GunGlock extends BaseGun {
 
-    public GunGlock (String unlocalizedName, int maxAmmo, Item ammoType) {
-        super(unlocalizedName, maxAmmo, ammoType);
+    public GunGlock (String unlocalizedName, int maxAmmo, Item ammoType, int reloadTime) {
+        super(unlocalizedName, maxAmmo, ammoType, reloadTime);
     }
 
     @Override

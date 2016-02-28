@@ -55,7 +55,6 @@ public class ReloadMessage implements IMessage {
         EntityPlayer entPlayer;
         int ammoType;
         ItemStack gun;
-        NBTTagCompound gunTc;
 
         @Override
         public IMessage onMessage(final ReloadMessage message, final MessageContext ctx) {
@@ -66,12 +65,8 @@ public class ReloadMessage implements IMessage {
                     entPlayer = ctx.getServerHandler().playerEntity.worldObj.getPlayerEntityByName(message.playerName);
                     ammoType = message.ammoType;
                     gun = entPlayer.getHeldItem();
-                    gunTc = gun.getTagCompound();
 
-                    if (entPlayer.inventory.hasItem(Item.getItemById(ammoType))) {
-                        entPlayer.inventory.consumeInventoryItem(Item.getItemById(ammoType));
-                        gunTc.setInteger("ammo", ((BaseGun) gun.getItem()).maxAmmo);
-                    }
+                    BaseGun.reload(entPlayer, ammoType, gun);
                 }
             });
             return null;

@@ -4,14 +4,10 @@ import com.brilliantcrash.tacticraft.BaseMod;
 import com.brilliantcrash.tacticraft.items.guns.BaseGun;
 import com.brilliantcrash.tacticraft.packets.ReloadMessage;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
  * Created by Evan on 2/21/2016.
