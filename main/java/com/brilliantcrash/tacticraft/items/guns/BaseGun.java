@@ -28,13 +28,14 @@ public abstract class BaseGun extends Item {
      */
     public int fireRate;
 
-    public BaseGun(String unlocalizedName, int maxAmmo, Item ammoType, int reloadTime) {
+    public BaseGun(String unlocalizedName, int maxAmmo, Item ammoType, int reloadTime, int fireRate) {
         super();
         this.setUnlocalizedName(unlocalizedName);
         this.setCreativeTab(ModCreativeTabs.tacticraft);
         this.maxAmmo = maxAmmo;
         this.ammoType = ammoType;
         this.reloadTime = reloadTime;
+        this.fireRate = fireRate;
     }
 
     @Override
@@ -47,7 +48,8 @@ public abstract class BaseGun extends Item {
      * @param stack The gun itself.
      */
     public void fire(ItemStack stack, World worldIn, EntityPlayer player) {
-        if (worldIn.getTotalWorldTime() - stack.getTagCompound().getLong("lastReload") > reloadTime) {
+        if (worldIn.getTotalWorldTime() - stack.getTagCompound().getLong("lastReload") > reloadTime &&
+                worldIn.getTotalWorldTime() - stack.getTagCompound().getLong("lastShot") > fireRate) {
             NBTTagCompound tc = stack.getTagCompound();
 
             if (tc.getInteger("ammo") == 0) {
@@ -57,6 +59,7 @@ public abstract class BaseGun extends Item {
 
             tc.setInteger("ammo", tc.getInteger("ammo") - 1);
             System.out.println(tc.getInteger("ammo"));
+            tc.setLong("lastShot", worldIn.getTotalWorldTime());
             worldIn.playSoundAtEntity(player, "tacticraft:sound_gun9mmSingleShot", 1.0F, 1.0F);
 
             EntityBullet bullet = getBullet(worldIn, player, stack);
@@ -93,11 +96,17 @@ public abstract class BaseGun extends Item {
      */
     public abstract String getSound();
 
+    /**
+     * @return What firemode the gun uses. Comes in the form of an array, the first item of which is the default.
+     */
+    public abstract FireMode[] getFireModes();
+
     @Override
     public void onCreated(ItemStack itemStack, World world, EntityPlayer player) {
         createNBT(itemStack);
     }
 
+    //TODO integrate firemodes
     public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
     {
         createNBT(itemStackIn);
@@ -121,6 +130,8 @@ public abstract class BaseGun extends Item {
         if (!stack.hasTagCompound()) {
             stack.setTagCompound(new NBTTagCompound());
             stack.getTagCompound().setInteger("ammo", maxAmmo);
+            stack.getTagCompound().setLong("lastReload", 0);
+            stack.getTagCompound().setLong("lastShot", 0);
         }
     }
 

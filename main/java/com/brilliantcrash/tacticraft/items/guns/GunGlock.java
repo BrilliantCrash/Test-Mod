@@ -11,8 +11,8 @@ import net.minecraft.world.World;
  */
 public class GunGlock extends BaseGun {
 
-    public GunGlock (String unlocalizedName, int maxAmmo, Item ammoType, int reloadTime) {
-        super(unlocalizedName, maxAmmo, ammoType, reloadTime);
+    public GunGlock (String unlocalizedName, int maxAmmo, Item ammoType, int reloadTime, int fireRate) {
+        super(unlocalizedName, maxAmmo, ammoType, reloadTime, fireRate);
     }
 
     @Override
@@ -23,5 +23,13 @@ public class GunGlock extends BaseGun {
     @Override
     public String getSound() {
         return "tacticraft:sound_glockReload";
+    }
+
+    @Override
+    public FireMode[] getFireModes() {
+        return new FireMode[] {
+                FireMode.SEMIAUTOMATIC,
+                FireMode.AUTOMATIC
+        };
     }
 }
