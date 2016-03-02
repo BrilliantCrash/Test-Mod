@@ -1,5 +1,5 @@
 {
   "sound_gunClick":{"category":"master","sounds":[{"name":"sound_gunClick","stream":false}]},
-  "sound_gun9mmSingleShot":{"category":"master","sounds":[{"name":"sound_gun9mmSingleShot","stream":false}]}
-
+  "sound_gun9mmSingleShot":{"category":"master","sounds":[{"name":"sound_gun9mmSingleShot","stream":false}]},
+  "sound_glockReload":{"category":"master","sounds":[{"name":"sound_glockReload","stream":false}]}
 }

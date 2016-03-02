@@ -2,7 +2,10 @@ package com.brilliantcrash.tacticraft.items.guns;
 
 import com.brilliantcrash.tacticraft.ModCreativeTabs;
 import com.brilliantcrash.tacticraft.entities.EntityBullet;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,46 +17,81 @@ import net.minecraft.world.World;
  */
 public abstract class BaseGun extends Item {
 
-    public int meta;
     public int maxAmmo;
+    public Item ammoType;
+    /**
+     * Delay after reload in which a shot cannot be fired in ticks.
+     */
+    public int reloadTime;
+    /**
+     * Delay between shots in ticks (20 ticks = 1 sec)
+     */
+    public int fireRate;
 
-    public BaseGun(String unlocalizedName, int maxAmmo) {
+    public BaseGun(String unlocalizedName, int maxAmmo, Item ammoType, int reloadTime) {
         super();
         this.setUnlocalizedName(unlocalizedName);
         this.setCreativeTab(ModCreativeTabs.tacticraft);
         this.maxAmmo = maxAmmo;
+        this.ammoType = ammoType;
+        this.reloadTime = reloadTime;
+    }
+
+    @Override
+    public EnumAction getItemUseAction(ItemStack stack) {
+        return EnumAction.NONE;
     }
 
     /**
      * What to do when firing the gun.
-     * @param stack
+     * @param stack The gun itself.
      */
     public void fire(ItemStack stack, World worldIn, EntityPlayer player) {
-        NBTTagCompound tc = stack.getTagCompound();
+        if (worldIn.getTotalWorldTime() - stack.getTagCompound().getLong("lastReload") > reloadTime) {
+            NBTTagCompound tc = stack.getTagCompound();
 
-        if (tc.getInteger("ammo") == 0) {
-            worldIn.playSoundAtEntity(player, "tacticraft:sound_gunClick", 1.0F, 1.0F);
-            return;
-        }
+            if (tc.getInteger("ammo") == 0) {
+                worldIn.playSoundAtEntity(player, "tacticraft:sound_gunClick", 1.0F, 1.0F);
+                return;
+            }
 
-        tc.setInteger("ammo", tc.getInteger("ammo") - 1);
-        System.out.println(tc.getInteger("ammo"));
-        worldIn.playSoundAtEntity(player, "tacticraft:sound_gun9mmSingleShot", 1.0F, 1.0F);
+            tc.setInteger("ammo", tc.getInteger("ammo") - 1);
+            System.out.println(tc.getInteger("ammo"));
+            worldIn.playSoundAtEntity(player, "tacticraft:sound_gun9mmSingleShot", 1.0F, 1.0F);
 
-        EntityBullet bullet = getBullet(worldIn, player, stack);
-        if (!worldIn.isRemote) {
-            worldIn.spawnEntityInWorld(bullet);
+            EntityBullet bullet = getBullet(worldIn, player, stack);
+            if (!worldIn.isRemote) {
+                worldIn.spawnEntityInWorld(bullet);
+            }
         }
     }
 
+    /**
+     * @param worldIn The world.
+     * @param player The player that fired the gun.
+     * @param stack The actual bullet itself.
+     * @return What bullet this gun uses.
+     */
     public abstract EntityBullet getBullet(World worldIn, EntityPlayer player, ItemStack stack);
 
     /**
      * Reloads the gun if there is a clip in the player's inventory.
      */
-    public void reload() {
-        // TODO make this
+    public static void reload(EntityPlayer entPlayer, int ammoType2, ItemStack gun, World worldIn) {
+        NBTTagCompound gunTc = gun.getTagCompound();
+
+        if (entPlayer.inventory.hasItem(Item.getItemById(ammoType2))) {
+            entPlayer.inventory.consumeInventoryItem(Item.getItemById(ammoType2));
+            gunTc.setInteger("ammo", ((BaseGun) gun.getItem()).maxAmmo);
+            gunTc.setLong("lastReload", worldIn.getTotalWorldTime());
+            worldIn.playSoundAtEntity(entPlayer, ((BaseGun) gun.getItem()).getSound(), 1.0F, 1.0F);
+        }
     }
+
+    /**
+     * @return What sound the gun makes.
+     */
+    public abstract String getSound();
 
     @Override
     public void onCreated(ItemStack itemStack, World world, EntityPlayer player) {
@@ -77,7 +115,7 @@ public abstract class BaseGun extends Item {
 
     /**
      * Method to quickly create an NBTTagCompound if it doesn't already exist.
-     * @param stack
+     * @param stack Item to make a NBTTagCompound for.
      */
     public void createNBT (ItemStack stack) {
         if (!stack.hasTagCompound()) {
